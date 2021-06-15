@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "common": [
+      "@iot-ensemble/devices-flow-common": [
         "dist/common/common",
         "dist/common"
       ]
