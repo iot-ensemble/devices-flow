@@ -2,10 +2,15 @@
   "name": "devices-flow",
   "version": "0.0.0",
   "scripts": {
+		"clean": "rimraf dist",
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+		"build": "npm run build:common && npm run build:lcu && npm run build:demo",
+		"build:common": "ng build common",
+		"build:demo": "ng build demo",
+		"build:lcu": "ng build lcu --single-bundle",
+		"start": "npm run clean && npm-run-all --parallel watch:*",
+		"watch:common": "ng build common --watch --configuration development",
+		"watch:demo": "wait-on dist/common/lcu.api.d.ts && npm run start:demo",
     "test": "ng test"
   },
   "private": true,
