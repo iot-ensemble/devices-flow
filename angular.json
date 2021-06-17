@@ -8,7 +8,7 @@
       "projectType": "library",
       "root": "projects/common",
       "sourceRoot": "projects/common/src",
-      "prefix": "lib",
+      "prefix": "lcu",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
