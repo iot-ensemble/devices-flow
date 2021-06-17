@@ -1,1 +1,37 @@
-<p>emulated-devices works!</p>
+<lcu-dashboard-card-element
+  class="emulated section"
+  title="Emulated Devices"
+  icon="contactless"
+>
+  <nav>
+    <lcu-enabled-toggle
+      class="margin-right-3"
+      [enabled]="State?.Emulated?.Enabled"
+      [loading]="State?.Emulated?.Loading"
+      (enabled-toggled)="ToggleEmulatedEnabledChanged($event)"
+    >
+    </lcu-enabled-toggle>
+
+    <a
+      href="/docs/getting-started/emulated-data"
+      target="_blank"
+      lcuEvent="click"
+      label="Emulated Devices"
+      category="help"
+    >
+      <mat-icon class="cyan-accent-text" matTooltip="More info"
+        >help_outline</mat-icon
+      >
+    </a>
+  </nav>
+
+  <div class="margin-left-5">
+    <p>
+      To see the dashboard in action without connecting a device, enable the
+      emulated device data. When enabled, emulated data will be provided in your
+      data queries. The emulated device we are showing here is for smart room
+      detection and provides data on the temperature, humidity and occupancy of
+      a room.
+    </p>
+  </div>
+</lcu-dashboard-card-element>

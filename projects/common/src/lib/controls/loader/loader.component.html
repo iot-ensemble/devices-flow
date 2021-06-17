@@ -1,0 +1,13 @@
+<div class="margin-2" *ngIf="Loading">
+  <div fxLayout="row" fxLayoutAlign="center center" class="spinner-container">
+    <mat-spinner [diameter]="Diameter"></mat-spinner>
+
+    <div
+      class="spinner-logo"
+      logo-alt="Fathym Logo"
+      [style.height]="LogoDiameter"
+      [style.width]="LogoDiameter"
+      *ngIf="!HideInner"
+    ></div>
+  </div>
+</div>
