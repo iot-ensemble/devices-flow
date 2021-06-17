@@ -14,6 +14,12 @@ import { DashboardComponent } from './elements/dashboard/dashboard.component';
     DashboardComponent,
   ],
   imports: [],
-  exports: [EmulatedDevicesComponent, DevicesComponent, TelemetryComponent, StorageAccessComponent, DashboardComponent],
+  exports: [
+    EmulatedDevicesComponent,
+    DevicesComponent,
+    TelemetryComponent,
+    StorageAccessComponent,
+    DashboardComponent,
+  ],
 })
 export class CommonModule {}
