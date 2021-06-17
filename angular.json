@@ -1,8 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "36b6b892-7ec5-41e6-9212-f21bd65f11c2"
-  },
+  "cli": { "analytics": "36b6b892-7ec5-41e6-9212-f21bd65f11c2" },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -14,16 +12,12 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/common/ng-package.json"
-          },
+          "options": { "project": "projects/common/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "projects/common/tsconfig.lib.prod.json"
             },
-            "development": {
-              "tsConfig": "projects/common/tsconfig.lib.json"
-            }
+            "development": { "tsConfig": "projects/common/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         },
@@ -40,12 +34,8 @@
     "demo": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
+        "@schematics/angular:component": { "style": "scss" },
+        "@schematics/angular:application": { "strict": true }
       },
       "root": "projects/demo",
       "sourceRoot": "projects/demo/src",
@@ -64,9 +54,7 @@
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
-            "styles": [
-              "projects/demo/src/styles.scss"
-            ],
+            "styles": ["projects/demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -74,8 +62,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -105,20 +93,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "demo:build:production"
-            },
-            "development": {
-              "browserTarget": "demo:build:development"
-            }
+            "production": { "browserTarget": "demo:build:production" },
+            "development": { "browserTarget": "demo:build:development" }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "demo:build"
-          }
+          "options": { "browserTarget": "demo:build" }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -132,9 +114,7 @@
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
-            "styles": [
-              "projects/demo/src/styles.scss"
-            ],
+            "styles": ["projects/demo/src/styles.scss"],
             "scripts": []
           }
         }
@@ -143,19 +123,15 @@
     "lcu": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
+        "@schematics/angular:component": { "style": "scss" },
+        "@schematics/angular:application": { "strict": true }
       },
       "root": "projects/lcu",
       "sourceRoot": "projects/lcu/src",
       "prefix": "lcu",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/lcu",
             "index": "projects/lcu/src/index.html",
@@ -167,18 +143,33 @@
               "projects/lcu/src/favicon.ico",
               "projects/lcu/src/assets"
             ],
-            "styles": [
-              "projects/lcu/src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["projects/lcu/src/styles.scss"],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -206,25 +197,19 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "lcu:build:production"
-            },
-            "development": {
-              "browserTarget": "lcu:build:development"
-            }
+            "production": { "browserTarget": "lcu:build:production" },
+            "development": { "browserTarget": "lcu:build:development" }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "lcu:build"
-          }
+          "options": { "browserTarget": "lcu:build" }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "projects/lcu/src/test.ts",
             "polyfills": "projects/lcu/src/polyfills.ts",
@@ -235,14 +220,12 @@
               "projects/lcu/src/favicon.ico",
               "projects/lcu/src/assets"
             ],
-            "styles": [
-              "projects/lcu/src/styles.scss"
-            ],
+            "styles": ["projects/lcu/src/styles.scss"],
             "scripts": []
           }
         }
       }
     }
   },
-  "defaultProject": "common"
+  "defaultProject": "demo"
 }
