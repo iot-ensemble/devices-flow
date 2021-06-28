@@ -1,0 +1,15 @@
+<div class="table-container">
+  <lcu-data-grid
+    expand
+    [config]="GridParameters"
+    (page-event)="HandlePageEvent($event)"
+  >
+    <div>
+      <h4>No devices enrolled yet.</h4>
+
+      <p>
+        Enroll a device to get started.
+      </p>
+    </div>
+  </lcu-data-grid>
+</div>

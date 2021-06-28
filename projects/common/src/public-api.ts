@@ -8,6 +8,7 @@ export * from './lib/material.module';
 export * from './lib/controls/dashboard-card/dashboard-card.component';
 export * from './lib/controls/enabled-toggle/enabled-toggle.component';
 export * from './lib/controls/loader/loader.component';
+//export * from './lib/controls/devices-table/devices-table.component;
 // export * from './lib/controls/swagger-ui/swagger-ui.component';
 export * from './lib/elements/dashboard/dashboard.component';
 export * from './lib/elements/devices/devices.component';

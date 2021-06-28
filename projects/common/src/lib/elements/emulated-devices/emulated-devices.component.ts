@@ -12,10 +12,12 @@ export class EmulatedDevicesComponent implements OnInit {
 
   //  Properties
   @Input('state')
-  public State?: IoTEnsembleState;
+  public State!: IoTEnsembleState;
 
   //  Constructors
-  constructor(protected iotEnsSvc: IoTEnsembleService) {}
+  constructor(protected iotEnsSvc: IoTEnsembleService) {
+    this.State = {};
+  }
 
   //  Life Cycle
   public ngOnInit(): void {}
@@ -25,10 +27,12 @@ export class EmulatedDevicesComponent implements OnInit {
     if (this.State?.Emulated) {
       this.State.Emulated.Loading = true;
     }
-
+    if(this.State?.Emulated)
+    {
     this.iotEnsSvc.ToggleEmulatedEnabled().subscribe(resp => {
-      this.State.Emulated.Enabled = resp != null;
+        this.State!.Emulated!.Enabled = resp != null;
     });
+  }
   }
 
   //  Fields

@@ -15,7 +15,7 @@ export class Status {
     return meta;
   }
 
-  public Message?: string;
+  public Message!: string;
 }
 
 export function isStatusSuccess(status: Status) {
