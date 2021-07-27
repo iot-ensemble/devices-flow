@@ -10,13 +10,13 @@ import {
 import { ClipboardCopyFunction, DataPipeConstants } from '@lcu/common';
 import { MatTableDataSource } from '@angular/material/table';
 import {
+  DataGridComponent,
   ColumnDefinitionModel,
   DataGridConfigModel,
   DataGridFeaturesModel,
   DataGridPaginationModel,
   DynamicComponentModel,
 } from '@lowcodeunit/data-grid';
-import { debug } from 'console';
 import { of } from 'rxjs';
 import { IoTEnsembleTelemetry, IoTEnsembleTelemetryPayload } from '../../state/iot-ensemble.state';
 import { GtagService } from '../../services/gtag.services';
@@ -36,9 +36,9 @@ export class TelemetryListComponent implements OnChanges, OnInit {
   @Output('downloaded')
   public Downloaded: EventEmitter<IoTEnsembleTelemetryPayload>;
 
-  public DynamicComponents!: Array<DynamicComponentModel>;
+  public DynamicComponents: Array<DynamicComponentModel>;
 
-  public GridParameters!: DataGridConfigModel;
+  public GridParameters: DataGridConfigModel;
 
   @Output('page-event')
   public PageEvent: EventEmitter<any>;

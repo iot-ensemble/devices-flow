@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ClipboardCopyFunction, DataPipeConstants } from '@lcu/common';
 import {
+  
   ColumnDefinitionModel,
   DataGridConfigModel,
   DataGridFeaturesModel,
@@ -198,7 +199,7 @@ export class DevicesTableComponent implements OnInit{//}, OnChanges {
     const paginationDetails: DataGridPaginationModel = new DataGridPaginationModel(
       {
         Length: this.DevicesConfig?.TotalDevices,
-        PageIndex: this.DevicesConfig?.Page - 1,
+        PageIndex: this.DevicesConfig.Page - 1,
         PageSize: this.DevicesConfig?.PageSize,
         PageSizeOptions: [5, 10, 25],
       }

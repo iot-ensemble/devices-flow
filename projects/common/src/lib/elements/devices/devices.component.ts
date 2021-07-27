@@ -25,7 +25,7 @@ export class DevicesComponent implements OnInit {
   public get DeviceNameErrorText(): string {
     let errorText: string = "";
 
-    if (this.AddDeviceFormGroup!.get('deviceName').hasError('required') && this.AddDeviceFormGroup?.touched) {
+    if (this.AddDeviceFormGroup.get('deviceName').hasError('required') && this.AddDeviceFormGroup?.touched) {
       errorText = 'Device name is required\r\n';
     }
 
@@ -54,8 +54,8 @@ export class DevicesComponent implements OnInit {
 
   public get MaxDevicesReached(): boolean {
     return (
-      this.State.DevicesConfig?.TotalDevices >=
-      this.State.DevicesConfig?.MaxDevicesCount
+      this.State.DevicesConfig.TotalDevices >=
+      this.State.DevicesConfig.MaxDevicesCount
     );
   }
 
@@ -104,7 +104,7 @@ export class DevicesComponent implements OnInit {
 
   public IssueDeviceSASToken(deviceName: string) {
 
-    this.State.DevicesConfig.Loading = true;
+    this.State.DevicesConfig!.Loading = true;
 
     //  TODO:  Pass through expiry time in some way?
     this.iotEnsSvc.IssueDeviceSASToken(deviceName, 0);
@@ -119,7 +119,7 @@ export class DevicesComponent implements OnInit {
   }
 
   public RevokeDeviceEnrollmentClick(deviceId: string) {
-    this.State.DevicesConfig.Loading = true;
+    this.State.DevicesConfig!.Loading = true;
 
     this.iotEnsSvc.RevokeDeviceEnrollment(deviceId);
   }
@@ -167,7 +167,7 @@ export class DevicesComponent implements OnInit {
 
   
   public UpdateDeviceTablePageSize(pageSize: number) {
-    this.State.DevicesConfig.Loading = true;
+    this.State!.DevicesConfig!.Loading = true;
 
     this.iotEnsSvc.UpdateConnectedDevicesSync(
       this.State.DevicesConfig.Page,

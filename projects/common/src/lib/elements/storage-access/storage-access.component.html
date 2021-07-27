@@ -1,1 +1,48 @@
-<p>storage-access works!</p>
+<lcu-dashboard-card-element
+class="storage-access section"
+[context]="{ Title: 'Storage Access', Icon: 'storage' }"
+>
+<nav>
+  <a
+    href="https://www.iot-ensemble.com/docs/getting-started/connecting-downstream-services"
+    target="_blank"
+    lcuEvent="click"
+    label="Storage Access"
+    category="help"
+  >
+    <mat-icon class="cyan-accent-text" matTooltip="More info">help_outline</mat-icon>
+  </a>
+</nav>
+
+<div>
+  <div class="margin-left-5 margin-top-2">
+    Use the API keys to get your data downstream to the dashboards and
+    services of your choice for visualization, application development,
+    ML/AI, and more.
+  </div>
+
+  <div 
+  class="margin-top-4" 
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutAlign="space-around start"
+  fxLayoutAlign.lt-md="space-around center"
+
+
+  > 
+
+  <data-info-cards
+      fxFlex="20"
+      [data-retention]="State.DataRetention"
+      [data-interval]="State.DataInterval"
+      [total-payloads]="State.Telemetry?.TotalPayloads">
+  </data-info-cards>
+
+    <api-access
+    [api-keys]="State.Storage?.APIKeys"
+    [open-api-source]="State.Storage?.OpenAPISource"
+    (regenerated)="RegenerateAPIKey($event)"
+  ></api-access>
+  </div>
+</div>
+</lcu-dashboard-card-element>

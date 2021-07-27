@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PayloadFormComponent } from '../../controls/payload-form/payload-form.component';
 import { GenericModalModel } from '../../models/generice-modal.model';
+import { GenericModalService } from '../../services/generic-modal.service';
 import { IoTEnsembleService } from '../../services/iot-ensemble.service';
-import { IoTEnsembleState } from '../../state/iot-ensemble.state';
+import { IoTEnsembleState, IoTEnsembleTelemetryPayload } from '../../state/iot-ensemble.state';
+import { SendMessageDialogComponent } from '../manage/send-message-dialog/send-message-dialog.component';
 
 @Component({
   selector: 'lcu-telemetry',
@@ -11,6 +14,8 @@ import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 export class TelemetryComponent implements OnInit {
   // Fields
   //  Properties
+  public DeviceNames!: string[];
+  
   public LastSyncedAt!: Date;
 
   @Input('state')
@@ -18,6 +23,7 @@ export class TelemetryComponent implements OnInit {
   //  Constructors
   constructor(
     protected iotEnsSvc: IoTEnsembleService,
+    protected genericModalService: GenericModalService<PayloadFormComponent>,
   ) { }
   //  Life Cycle
   ngOnInit(): void {
@@ -67,7 +73,7 @@ export class TelemetryComponent implements OnInit {
 
         this.genericModalService.ModalInstance.FilterValue.subscribe((filterValue: string) => {
 
-          this.iotEnsCtxt.ListAllDeviceNames(this.State.UserEnterpriseLookup, filterValue)
+          this.iotEnsSvc.ListAllDeviceNames(this.State.UserEnterpriseLookup, filterValue)
           .then((obs: any) => {
             // console.log("obs: ", obs)
             if (obs.body?.Status?.Code === 0) 
@@ -95,11 +101,16 @@ export class TelemetryComponent implements OnInit {
         console.log('ONAction', payload);
 
         if (payload) {
-          this.SendDeviceMesaage(payload);
+          this.SendDeviceMessage(payload);
         }
       });
     // }, 1000);
   } 
+  public SendDeviceMessage(payload: IoTEnsembleTelemetryPayload) {
+    this.State!.Telemetry!.Loading = true;
+
+    this.iotEnsSvc.SendDeviceMessage(payload.DeviceID, payload);
+  }
 
   public ToggleTelemetryEnabledChanged(enabled: boolean) {
     this.State!.Telemetry!.Loading = true;
