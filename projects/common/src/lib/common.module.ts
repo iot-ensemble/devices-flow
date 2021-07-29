@@ -5,7 +5,7 @@ import {
   MaterialModule,
   PipeModule,
 } from '@lcu/common';
-import { DataGridComponent } from '@lowcodeunit/data-grid';
+import { DataGridModule } from '@lowcodeunit/data-grid';
 import { DevicesComponent } from './elements/devices/devices.component';
 import { EmulatedDevicesComponent } from './elements/emulated-devices/emulated-devices.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +40,7 @@ import { SendMessageDialogComponent } from './elements/manage/send-message-dialo
     SendMessageDialogComponent,
   ],
   imports: [  
-    DataGridComponent,
+    DataGridModule,
     FathymSharedModule,
     MaterialModule,
     PipeModule,
@@ -62,6 +62,7 @@ import { SendMessageDialogComponent } from './elements/manage/send-message-dialo
     TelemetryListComponent,
     PayloadFormComponent,
     SendMessageDialogComponent,
+    DataGridModule
   ],
   providers: [
     IoTEnsembleService
