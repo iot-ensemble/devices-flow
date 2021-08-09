@@ -12,7 +12,8 @@ export * from './lib/controls/devices-table/devices-table.component';
 export * from './lib/controls/data-info-cards/data-info-cards.component';
 export * from './lib/controls/payload-form/payload-form.component'
 export * from './lib/elements/manage/send-message-dialog/send-message-dialog.component'
-// export * from './lib/controls/swagger-ui/swagger-ui.component';
+export * from './lib/controls/swagger-ui/swagger-ui.component';
+export * from './lib/elements/admin/admin.component'
 export * from './lib/elements/dashboard/dashboard.component';
 export * from './lib/elements/devices/devices.component';
 export * from './lib/elements/emulated-devices/emulated-devices.component';

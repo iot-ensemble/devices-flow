@@ -13,7 +13,7 @@ import { AdminComponent } from './controls/admin/admin.component';
 import { HomeComponent } from './controls/home/home.component';
 import { ManageComponent } from './controls/manage/manage.component';
 import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
-import { LcuDeviceDataFlowModule } from '@iot-ensemble/lcu-device-data-flow-common';
+import { CommonModule } from '@iot-ensemble/devices-flow-common';
 import { environment } from '../environments/environment';
 import { AppHostModule } from '@lowcodeunit/app-host-common';
 
@@ -26,7 +26,7 @@ import { AppHostModule } from '@lowcodeunit/app-host-common';
     FathymSharedModule.forRoot(),
     MaterialModule,
     FlexLayoutModule,
-    LcuDeviceDataFlowModule.forRoot(),
+    CommonModule.forRoot(),
     AppHostModule.forRoot()
   ],
   providers: [

@@ -18,35 +18,26 @@ export class IoTEnsembleService {
   public IssueDeviceSASToken(
     deviceName: string,
     expiryInSeconds: number = 0
-  ): void{}
-
-  public ListAllDeviceNames(childEntLookup: any, filter: string){
+  ){
+    return this.http.get(`devices/${deviceName}`, {})
   }
 
+  public ListAllDeviceNames(childEntLookup: any, filter: string){
+    return this.http.get(`devices/`, {})
+  } 
+
   public RevokeDeviceEnrollment(deviceId: any) {
-    return this.http.post('',{});
+    return this.http.post(`devices/${deviceId}/revoke`,{});
   }
 
   public SendDeviceMessage(
     deviceName: any,
     payload: IoTEnsembleTelemetryPayload
-  ): void {}
-
-
-  public ToggleEmulatedEnabled() {
-    return this.http.post('devices/telemetry/emulated/toggle', {});
-  };
-
-  public ToggleTelemetrySync() {}
+  ) {
+    this.http.post(`/devices/from/${deviceName}/send`, {});
+  }
 
   public UpdateConnectedDevicesSync(page: number, pageSize: number) {
   }
-
-  public UpdateTelemetrySync(    
-    refreshRate: number,
-    page: number,
-    pageSize: number) {
-  }
-
   
 }

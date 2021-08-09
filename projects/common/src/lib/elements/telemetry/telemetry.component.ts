@@ -4,6 +4,7 @@ import { GenericModalModel } from '../../models/generice-modal.model';
 import { GenericModalService } from '../../services/generic-modal.service';
 import { IoTEnsembleService } from '../../services/iot-ensemble.service';
 import { IoTEnsembleState, IoTEnsembleTelemetryPayload } from '../../state/iot-ensemble.state';
+import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 import { SendMessageDialogComponent } from '../manage/send-message-dialog/send-message-dialog.component';
 
 @Component({
@@ -22,6 +23,7 @@ export class TelemetryComponent implements OnInit {
   public State!: IoTEnsembleState;
   //  Constructors
   constructor(
+    protected iotEnsCtxt: IoTEnsembleStateContext,
     protected iotEnsSvc: IoTEnsembleService,
     protected genericModalService: GenericModalService<PayloadFormComponent>,
   ) { }
@@ -73,7 +75,7 @@ export class TelemetryComponent implements OnInit {
 
         this.genericModalService.ModalInstance.FilterValue.subscribe((filterValue: string) => {
 
-          this.iotEnsSvc.ListAllDeviceNames(this.State.UserEnterpriseLookup, filterValue)
+          this.iotEnsSvc.ListAllDeviceNames(this.State.UserEnterpriseLookup, filterValue).toPromise()
           .then((obs: any) => {
             // console.log("obs: ", obs)
             if (obs.body?.Status?.Code === 0) 
@@ -115,13 +117,13 @@ export class TelemetryComponent implements OnInit {
   public ToggleTelemetryEnabledChanged(enabled: boolean) {
     this.State!.Telemetry!.Loading = true;
 
-    this.iotEnsSvc.ToggleTelemetrySync();
+    this.iotEnsCtxt.ToggleTelemetrySync();
   }
 
   public UpdateTelemetryPage(page: number) {
     this.State!.Telemetry!.Loading = true;
 
-    this.iotEnsSvc.UpdateTelemetrySync(
+    this.iotEnsCtxt.UpdateTelemetrySync(
       this.State!.Telemetry!.RefreshRate!,
       page,
       this.State!.Telemetry!.PageSize!
@@ -131,7 +133,7 @@ export class TelemetryComponent implements OnInit {
   public UpdateTelemetryPageSize(pageSize: number) {
     this.State!.Telemetry!.Loading = true;
 
-    this.iotEnsSvc.UpdateTelemetrySync(
+    this.iotEnsCtxt.UpdateTelemetrySync(
       this.State!.Telemetry!.RefreshRate,
       this.State!.Telemetry!.Page,
       pageSize

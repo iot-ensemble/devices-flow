@@ -52,7 +52,7 @@ export class TelemetryListComponent implements OnChanges, OnInit {
 
     this.PageEvent = new EventEmitter();
 
-    this.Telemetry = { Payloads: [] };
+    //this.Telemetry = {  };
   }
 
   //  Life Cycle

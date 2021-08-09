@@ -1,75 +1,75 @@
-// import {
-//   Component,
-//   Input,
-//   OnInit,
-//   ElementRef,
-//   AfterViewInit,
-// } from '@angular/core';
-// import SwaggerUI from 'swagger-ui';
+import {
+  Component,
+  Input,
+  OnInit,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import SwaggerUI from 'swagger-ui';
 
-// @Component({
-//   selector: 'lcu-swagger-ui',
-//   templateUrl: './swagger-ui.component.html',
-//   styleUrls: ['./swagger-ui.component.scss'],
-// })
-// export class SwaggerUIComponent implements AfterViewInit, OnInit {
-//   //  Fields
+@Component({
+  selector: 'swagger-ui',
+  templateUrl: './swagger-ui.component.html',
+  styleUrls: ['./swagger-ui.component.scss'],
+})
+export class SwaggerUIComponent implements AfterViewInit, OnInit {
+  //  Fields
 
-//   //  Properties
-//   @Input('auth-key')
-//   public AuthKey?: string;
+  //  Properties
+  @Input('auth-key')
+  public AuthKey?: string;
 
-//   @Input('id')
-//   public ID: string;
+  @Input('id')
+  public ID: string;
 
-//   @Input('source')
-//   public Source: string;
+  @Input('source')
+  public Source: string;
 
-//   //  Constructors
-//   constructor(protected el: ElementRef) {
-//     this.ID = 'swagger-ui';
+  //  Constructors
+  constructor(protected el: ElementRef) {
+    this.ID = 'swagger-ui';
 
-//     this.Source = 'https://petstore.swagger.io/v2/swagger.json';
-//   }
+    this.Source = 'https://petstore.swagger.io/v2/swagger.json';
+  }
 
-//   //  Life Cycle
-//   public ngAfterViewInit(): void {
-//     this.setupSwaggerUi();
-//   }
+  //  Life Cycle
+  public ngAfterViewInit(): void {
+    this.setupSwaggerUi();
+  }
 
-//   public ngOnInit(): void {}
+  public ngOnInit(): void {}
 
-//   //  API Methods
+  //  API Methods
 
-//   //  Helpers
-//   protected setupSwaggerUi() {
-//     const swaggerCfg = {
-//       domNode: this.el.nativeElement,
-//       requestInterceptor: null as any,
-//       url: this.Source,
-//     };
+  //  Helpers
+  protected setupSwaggerUi() {
+    const swaggerCfg = {
+      domNode: this.el.nativeElement,
+      requestInterceptor: null as any,
+      url: this.Source,
+    };
 
-//     if (this.AuthKey) {
-//       swaggerCfg.requestInterceptor = (req: any) => {
-//         req.headers = {
-//           'lcu-subscription-key': this.AuthKey,
-//         };
+    if (this.AuthKey) {
+      swaggerCfg.requestInterceptor = (req: any) => {
+        req.headers = {
+          'lcu-subscription-key': this.AuthKey,
+        };
 
-//         return req;
-//       };
-//     }
+        return req;
+      };
+    }
 
-//     const swag = SwaggerUI(swaggerCfg);
-//     // const ui = SwaggerUIBundle({
-//     //   dom_id: '#swagger-ui',
-//     //   layout: 'BaseLayout',
-//     //   presets: [
-//     //     SwaggerUIBundle.presets.apis,
-//     //     SwaggerUIBundle.SwaggerUIStandalonePreset,
-//     //   ],
-//     //   url: 'https://petstore.swagger.io/v2/swagger.json',
-//     //   docExpansion: 'none',
-//     //   operationsSorter: 'alpha',
-//     // });
-//   }
-// }
+    const swag = SwaggerUI(swaggerCfg);
+    // const ui = SwaggerUIBundle({
+    //   dom_id: '#swagger-ui',
+    //   layout: 'BaseLayout',
+    //   presets: [
+    //     SwaggerUIBundle.presets.apis,
+    //     SwaggerUIBundle.SwaggerUIStandalonePreset,
+    //   ],
+    //   url: 'https://petstore.swagger.io/v2/swagger.json',
+    //   docExpansion: 'none',
+    //   operationsSorter: 'alpha',
+    // });
+  }
+}

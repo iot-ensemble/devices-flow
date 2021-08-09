@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 import { IoTEnsembleService } from './../../services/iot-ensemble.service';
+import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 
 @Component({
   selector: 'lcu-emulated-devices',
@@ -15,7 +16,7 @@ export class EmulatedDevicesComponent implements OnInit {
   public State!: IoTEnsembleState;
 
   //  Constructors
-  constructor(protected iotEnsSvc: IoTEnsembleService) {
+  constructor(protected iotEnsSvc: IoTEnsembleService, protected iotEnsCtxt: IoTEnsembleStateContext,) {
     this.State = {};
   }
 
@@ -24,16 +25,11 @@ export class EmulatedDevicesComponent implements OnInit {
 
   //  API Methods
   public ToggleEmulatedEnabledChanged(enabled: boolean) {
-    if (this.State?.Emulated) {
-      this.State.Emulated.Loading = true;
-    }
-    if(this.State?.Emulated)
-    {
-    this.iotEnsSvc.ToggleEmulatedEnabled().subscribe(resp => {
-        this.State!.Emulated!.Enabled = resp != null;
-    });
+    this.State.Emulated.Loading = true;
+
+    this.iotEnsCtxt.ToggleEmulatedEnabled();
   }
-  }
+
 
   //  Fields
 }

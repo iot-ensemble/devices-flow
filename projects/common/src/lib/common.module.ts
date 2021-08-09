@@ -1,5 +1,6 @@
+import { AdminComponent } from './elements/admin/admin.component';
 import { ApiAccessComponent } from './controls/api-access/api-access.component'
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
   FathymSharedModule,
   MaterialModule,
@@ -21,9 +22,14 @@ import { LoaderComponent } from './controls/loader/loader.component';
 import { IoTEnsembleService } from './services/iot-ensemble.service';
 import { PayloadFormComponent } from './controls/payload-form/payload-form.component'
 import { SendMessageDialogComponent } from './elements/manage/send-message-dialog/send-message-dialog.component';
+import { SwaggerUIComponent } from '../public-api';
+import { IoTEnsembleStateContext } from './state/iot-ensemble-state.context';
+import { GenericModalService } from './services/generic-modal.service';
+import { GtagService } from './services/gtag.services';
 
 @NgModule({
   declarations: [
+    AdminComponent,
     ApiAccessComponent,
     EmulatedDevicesComponent,
     DataInfoCardsComponent,
@@ -38,6 +44,7 @@ import { SendMessageDialogComponent } from './elements/manage/send-message-dialo
     TelemetryListComponent,
     PayloadFormComponent,
     SendMessageDialogComponent,
+    SwaggerUIComponent
   ],
   imports: [  
     DataGridModule,
@@ -48,6 +55,7 @@ import { SendMessageDialogComponent } from './elements/manage/send-message-dialo
     ReactiveFormsModule,
             ],
   exports: [
+    AdminComponent,
     ApiAccessComponent,
     EmulatedDevicesComponent,
     DataInfoCardsComponent,
@@ -62,10 +70,21 @@ import { SendMessageDialogComponent } from './elements/manage/send-message-dialo
     TelemetryListComponent,
     PayloadFormComponent,
     SendMessageDialogComponent,
-    DataGridModule
+    SwaggerUIComponent
   ],
   providers: [
     IoTEnsembleService
   ]
 })
-export class CommonModule {}
+export class CommonModule {
+  static forRoot(): ModuleWithProviders<CommonModule> {
+    return {
+      ngModule: CommonModule,
+      providers: [
+        IoTEnsembleStateContext,
+        GenericModalService,
+        GtagService,
+      ],
+    };
+  }
+}

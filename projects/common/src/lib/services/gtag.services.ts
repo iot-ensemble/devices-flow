@@ -58,7 +58,7 @@ export class GtagService {
   }
 
   public Event(action: string, params?: GtagEventParams): Promise<void> {
-    if (this.gtag) {
+  
       // Wraps the event call into a Promise
       return this.zone.runOutsideAngular(
         () =>
@@ -83,7 +83,6 @@ export class GtagService {
             }
           })
       );
-    }
   }
 
   public Exception(description?: string, fatal?: boolean) {
