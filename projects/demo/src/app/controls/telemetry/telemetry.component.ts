@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lcu-telemetry',
+  selector: 'lcu-telemetry-element',
   templateUrl: './telemetry.component.html',
   styleUrls: ['./telemetry.component.html']
 })
-export class ManageComponent implements OnInit {
+export class TelemetryComponent implements OnInit {
 
   constructor() { }
 

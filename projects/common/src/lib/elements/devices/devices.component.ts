@@ -132,7 +132,7 @@ export class DevicesComponent implements OnInit {
 
   protected deviceNameValidator(): ValidatorFn {
       return (control: AbstractControl): { [key: string]: any } | null =>
-        !this.DeviceNames.includes(control.value)
+        this.DeviceNames.includes(control.value)
           ? null
           : { duplicateName: control.value };
     }

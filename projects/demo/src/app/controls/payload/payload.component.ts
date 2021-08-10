@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lcu-payload',
+  selector: 'lcu-payload-element',
   templateUrl: './payload.component.html',
   styleUrls: ['./payload.component.scss']
 })
-export class ManageComponent implements OnInit {
+export class PayloadComponent implements OnInit {
 
   constructor() { }
 
