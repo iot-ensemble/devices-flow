@@ -20,4 +20,8 @@ export * from './lib/elements/emulated-devices/emulated-devices.component';
 export * from './lib/elements/storage-access/storage-access.component';
 export * from './lib/elements/telemetry/telemetry.component';
 export * from './lib/controls/telemetry-list/telemetry-list.component'
+export * from './lib/state/iot-ensemble-admin-state.context'
+export * from './lib/state/iot-ensemble-admin.state'
+export * from './lib/state/iot-ensemble-state.context'
+export * from './lib/state/iot-ensemble.state'
 
