@@ -6,8 +6,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
-import { IoTEnsembleService } from './../../services/iot-ensemble.service';
 
 @Component({
   selector: 'lcu-devices',
@@ -64,7 +64,7 @@ export class DevicesComponent implements OnInit {
 
   //  Constructors
   constructor(
-    protected iotEnsSvc: IoTEnsembleService,
+    protected iotEnsCtxt: IoTEnsembleStateContext,
     protected formBldr: FormBuilder,
     ) {
     this.State = {};
@@ -82,7 +82,7 @@ export class DevicesComponent implements OnInit {
 
     this.DeviceNameToAdd = this.AddDeviceFormGroup?.controls.deviceName.value;
 
-    this.iotEnsSvc.EnrollDevice({
+    this.iotEnsCtxt.EnrollDevice({
       DeviceName: this.AddDeviceFormGroup?.controls.deviceName.value,
     });
     this.EnrollOpen = false;
@@ -106,7 +106,7 @@ export class DevicesComponent implements OnInit {
     this.State.DevicesConfig!.Loading = true;
 
     //  TODO:  Pass through expiry time in some way?
-    this.iotEnsSvc.IssueDeviceSASToken(deviceName, 0);
+    this.iotEnsCtxt.IssueDeviceSASToken(deviceName, 0);
   }
 
   public DeviceTablePageEvent(event: any) {
@@ -120,7 +120,7 @@ export class DevicesComponent implements OnInit {
   public RevokeDeviceEnrollmentClick(deviceId: string) {
     this.State.DevicesConfig!.Loading = true;
 
-    this.iotEnsSvc.RevokeDeviceEnrollment(deviceId);
+    this.iotEnsCtxt.RevokeDeviceEnrollment(deviceId);
   }
 
   //Helpers
@@ -142,7 +142,7 @@ export class DevicesComponent implements OnInit {
   public UpdateDeviceTablePageIndex(page: number) {
     this.State.DevicesConfig.Loading = true;
 
-    this.iotEnsSvc.UpdateConnectedDevicesSync(
+    this.iotEnsCtxt.UpdateConnectedDevicesSync(
       page,
       this.State?.DevicesConfig?.PageSize
     );
@@ -168,7 +168,7 @@ export class DevicesComponent implements OnInit {
   public UpdateDeviceTablePageSize(pageSize: number) {
     this.State!.DevicesConfig!.Loading = true;
 
-    this.iotEnsSvc.UpdateConnectedDevicesSync(
+    this.iotEnsCtxt.UpdateConnectedDevicesSync(
       this.State.DevicesConfig.Page,
       pageSize
     );

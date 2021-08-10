@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
-import { IoTEnsembleService } from './../../services/iot-ensemble.service';
 import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 
 @Component({
@@ -16,7 +15,7 @@ export class EmulatedDevicesComponent implements OnInit {
   public State!: IoTEnsembleState;
 
   //  Constructors
-  constructor(protected iotEnsSvc: IoTEnsembleService, protected iotEnsCtxt: IoTEnsembleStateContext,) {
+  constructor(protected iotEnsCtxt: IoTEnsembleStateContext,) {
     this.State = {};
   }
 

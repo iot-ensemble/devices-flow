@@ -19,7 +19,6 @@ import { DevicesTableComponent } from './controls/devices-table/devices-table.co
 import { DataInfoCardsComponent } from './controls/data-info-cards/data-info-cards.component';
 import { TelemetryListComponent } from './controls/telemetry-list/telemetry-list.component';
 import { LoaderComponent } from './controls/loader/loader.component';
-import { IoTEnsembleService } from './services/iot-ensemble.service';
 import { PayloadFormComponent } from './controls/payload-form/payload-form.component'
 import { SendMessageDialogComponent } from './elements/manage/send-message-dialog/send-message-dialog.component';
 import { SwaggerUIComponent } from '../public-api';
@@ -73,7 +72,6 @@ import { GtagService } from './services/gtag.services';
     SwaggerUIComponent
   ],
   providers: [
-    IoTEnsembleService
   ]
 })
 export class CommonModule {
