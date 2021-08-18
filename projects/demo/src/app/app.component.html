@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<div fxFlex>
+    <mat-toolbar 
+    color="primary" 
+    class="lcu-toolbar">
+      <a class="margin-right-3" mat-raised-button href="manage">Manage</a>
+      <a mat-raised-button href="admin">Admin</a>
+    </mat-toolbar>
+  
+    <div class="lcu-content mat-drawer-container">
+      <div class="lcu-card-container margin-2" fxLayout="row" fxLayout.lt-md="column">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  

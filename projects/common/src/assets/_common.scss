@@ -1,0 +1,151 @@
+@import '../../../../node_modules/@lcu/common/assets/theming/common-theme';
+@import '../../../../node_modules/@lcu/common/assets/styles/utils/margins-padding';
+@import '../../../../node_modules/@lcu/common/assets/styles/utils/fathym-cursors';
+
+
+$global-theme: fathym-ivy-theme(true);
+
+$primary: map-get($global-theme, primary);
+$accent: map-get($global-theme, accent);
+$warn: map-get($global-theme, warn);
+
+$orange-accent: map-get($mat-orange, 500);
+$green-accent: map-get($mat-green, A400);
+$yellow-accent: map-get($mat-yellow, 600);
+$purple-accent: map-get($mat-purple, 500);
+$cyan-accent: rgba(map-get($mat-cyan, A100), .75);
+
+$success:  map-get($mat-green, A700);
+
+// $primary-logo: $fathym-default-logo;
+$logo-color: map-get(map-get($global-theme, 'foreground'), 'icon');
+$divider-size: 5px;
+$divider: mat-color($primary);
+$background: map-get(map-get($global-theme, 'background'), 'background');
+$background-fill: rgba(map-get($mat-grey, 900), .75);
+$foreground: map-get(map-get($global-theme, 'foreground'), 'base');
+$primary-text: mat-color($primary);
+$secondary-text: map-get(map-get($global-theme, 'foreground'), 'secondary-text');
+
+@function set-opacity($color, $opacity) {
+    @return rgba($color, $opacity);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: $background;
+    color: white;
+}
+
+.logo-config {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+ .fathym-logo {
+    background-image: fathym-logo(thinky-logo, mat-color($accent), 1);
+    width: 50px;
+    height: 60px;
+    @extend .logo-config;
+}
+
+.fathym-full-logo {
+    background-image: fathym-logo(thinky-full-logo, mat-color($accent), 1);
+    width: 160px;
+    height: 60px;
+    @extend .logo-config;
+}
+
+.no-access {
+    background-color: rgba(mat-color($warn), .5);
+}
+
+.main-primary-text {
+    color: mat-color($primary) !important;
+}
+
+.main-accent-text {
+    color: mat-color($accent) !important;
+}
+
+.secondary-text {
+    color: $secondary-text;
+}
+
+.orange-accent {
+    background-color: $orange-accent;
+    color: $light-primary-text !important;
+}
+
+.green-accent {
+    background-color: $green-accent;
+    color: map-get(map-get($mat-green, contrast), 600);
+}
+
+.red-accent-text {
+    color: mat-color($warn);
+}
+
+.orange-accent-text {
+    color: $orange-accent;
+}
+
+.cyan-accent-text {
+    color: $cyan-accent;
+}
+
+.yellow-accent-text {
+    color: $yellow-accent;
+}
+
+.green-accent-text {
+    color: $green-accent;
+}
+
+.purple-accent-text {
+    color: $purple-accent;
+}
+
+.divider-fill-vert {
+    background-color: $divider;
+    min-height: 100%;
+    top:10%;
+    bottom:10%;
+    min-width: $divider-size;
+}
+
+.divider-fill-hor {
+    background-color: $divider;
+    height: $divider-size;
+    width: 100%;
+}
+
+.background-fill {
+    background-color: $background-fill;
+}
+
+.rowHighlight:hover {
+    background-color: rgba(map-get($accent, 500), .07);
+}
+
+.mat-button-base {
+  padding: 0 16px !important;
+}
+
+// .mat-card-content-bold{
+//     font-size: 20px;
+//     font-weight: 500;
+// }
+
+// .mat-card-margin-70{
+//     margin-right: 70px;
+//     margin-left: 70px;
+//     width: 150px;
+//     background-color: azure !important;
+// }

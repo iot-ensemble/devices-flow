@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { IoTEnsembleState, IoTEnsembleStateContext } from '@iot-ensemble/devices-flow-common';
+import { IoTEnsembleState } from '../../state/iot-ensemble.state';
+import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
+
 
 @Component({
-  selector: 'lcu-storage-access-element',
-  templateUrl: './storage-access.component.html',
-  styleUrls: ['./storage-access.component.html']
+  selector: 'lcu-manage',
+  templateUrl: './manage.component.html',
+  styleUrls: ['./manage.component.scss'],
 })
-export class StorageAccessComponent implements OnInit {
+export class ManageComponent implements OnInit {
+  //  Properties
   public State: IoTEnsembleState;
 
   //  Constructor

@@ -25,7 +25,7 @@ import { SwaggerUIComponent } from '../public-api';
 import { IoTEnsembleStateContext } from './state/iot-ensemble-state.context';
 import { GenericModalService } from './services/generic-modal.service';
 import { GtagService } from './services/gtag.services';
-
+import { ManageComponent } from './elements/manage/manage.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -40,6 +40,7 @@ import { GtagService } from './services/gtag.services';
     DashboardCardComponent,
     EnabledToggleComponent,
     LoaderComponent,
+    ManageComponent,
     TelemetryListComponent,
     PayloadFormComponent,
     SendMessageDialogComponent,
@@ -66,6 +67,7 @@ import { GtagService } from './services/gtag.services';
     DashboardCardComponent,
     EnabledToggleComponent,
     LoaderComponent,
+    ManageComponent,
     TelemetryListComponent,
     PayloadFormComponent,
     SendMessageDialogComponent,

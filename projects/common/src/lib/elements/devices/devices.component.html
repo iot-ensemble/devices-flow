@@ -1,6 +1,7 @@
 <lcu-dashboard-card-element
 class="connected section"
 [context]="{ Title: 'Connected Devices', Icon: 'loop' }"
+*ngIf="State.DevicesConfig"
 >
 <span class="card-subtitle" *ngIf="MaxDevicesReached && EnrollOpen">
   Max number of devices reached

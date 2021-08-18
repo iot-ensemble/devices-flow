@@ -11,7 +11,9 @@ export class DevicesComponent implements OnInit {
   public State: IoTEnsembleState;
 
   //  Constructor
-  constructor(protected iotEnsCtxt: IoTEnsembleStateContext) {}
+  constructor(protected iotEnsCtxt: IoTEnsembleStateContext) {
+    this.State ={};
+  }
 
   //  Life Cycle
   public ngOnInit(): void {

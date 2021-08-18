@@ -24,4 +24,5 @@ export * from './lib/state/iot-ensemble-admin-state.context'
 export * from './lib/state/iot-ensemble-admin.state'
 export * from './lib/state/iot-ensemble-state.context'
 export * from './lib/state/iot-ensemble.state'
+export * from './lib/elements/manage/manage.component'
 

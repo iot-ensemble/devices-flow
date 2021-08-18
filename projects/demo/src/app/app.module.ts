@@ -20,6 +20,7 @@ import { AppHostModule } from '@lowcodeunit/app-host-common';
 import { EmulatedDevicesComponent } from './controls/emulated-devices/emulated-devices.component';
 import { PayloadComponent } from './controls/payload/payload.component';
 import { StorageAccessComponent } from './controls/storage-access/storage-access.component';
+import { TelemetryComponent } from './controls/telemetry/telemetry.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, AdminComponent, ManageComponent, DevicesComponent, EmulatedDevicesComponent, PayloadComponent],
