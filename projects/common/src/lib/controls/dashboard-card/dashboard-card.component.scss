@@ -1,22 +1,27 @@
+@import "../../../assets/common";
+
 :host ::ng-deep {
   .dashboard-card {
+    margin-top: 5px;
+    display: block;
+    margin: 0.5rem 0;
     .card-container {
-      // @extend .margin-bottom-3;
+      @extend .margin-bottom-3;
 
       .mat-card-header {
-        // @extend .border-bottom !optional;
+        @extend .border-bottom !optional;
 
         .card-icon {
-          // @extend .orange-accent;
+          @extend .orange-accent;
         }
 
         .mat-card-subtitle {
-          // @extend .margin-top-2;
+          @extend .margin-top-2;
         }
       }
 
       .card-nav {
-        // @extend .margin-bottom-3;
+        @extend .margin-bottom-3;
 
         nav {
           display: flex;

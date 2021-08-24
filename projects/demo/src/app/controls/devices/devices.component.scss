@@ -1,3 +1,66 @@
-.home-container {
-  // margin: 5%;
+@import "projects/common/src/assets/_common.scss";
+
+@mixin info-dot($color) {
+  color: $color;
+  font-size: 1em;
+  
+}
+
+:host ::ng-deep {
+  .manage-header {
+  }
+
+  .manage {
+    .section {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .emulated {
+    }
+
+    .connected {
+      .device-list {
+      }
+
+      .deviceId,
+      .connStr {
+        // width: 300px;
+        // margin: 0.5em;
+      }
+
+      .divider-fill-vert {
+        height: 150px;
+      }
+    }
+
+    .telemetry {
+      .card-subtitle {
+        display: flex;
+      }
+    }
+
+    .storage-access {
+    }
+  }
+
+  .border-bottom {
+    // border-bottom: 1px solid set-opacity(grey, .25);
+  }
+
+  .telemetry-update {
+    color: set-opacity(white, 0.25);
+
+    .success-dot {
+      @include info-dot($success);
+    }
+
+    .error-dot {
+      @include info-dot(mat-color($warn));
+    }
+  }
+
+  .loading {
+    text-align: center;
+  }
 }

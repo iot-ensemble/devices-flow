@@ -39,7 +39,6 @@ class="storage-access section"
   </data-info-cards>
 
     <api-access
-    [api-keys]="State.Storage?.APIKeys"
     [open-api-source]="State.Storage?.OpenAPISource"
     (regenerated)="RegenerateAPIKey($event)"
   ></api-access>

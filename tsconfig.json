@@ -9,8 +9,10 @@
       "@iot-ensemble/devices-flow-common": [
         "dist/common/common",
         "dist/common"
-      ]
+      ],
+      
     },
+    "emitDecoratorMetadata": false,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -35,6 +37,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictPropertyInitialization": false,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "emitDecoratorMetadata": false
   }
 }

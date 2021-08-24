@@ -7,11 +7,11 @@
       fxLayout="row"
     >
       <div mat-card-avatar fxLayoutAlign="center center" class="card-icon">
-        <mat-icon>{{ Icon }}</mat-icon>
+        <mat-icon>{{ Context.Icon }}</mat-icon>
       </div>
 
-      <mat-card-title *ngIf="Title">
-        {{ Title }}
+      <mat-card-title *ngIf="Context">
+        {{ Context.Title }}
       </mat-card-title>
 
       <mat-card-subtitle fxLayout="row" fxLayoutAlign="start">

@@ -1,0 +1,58 @@
+<lcu-dashboard-card-element
+      class="dashboard section"
+      [context]="{ Title: 'Devices Dashboard', Icon: 'dashboard' }"
+    >
+      <nav>
+        <a
+          href="https://www.iot-ensemble.com/docs/getting-started/viewing-device-data#freeboard-dashboard"
+          target="_blank"
+          lcuEvent="click"
+          label="Devices Dashboard"
+          category="help"
+        >
+          <mat-icon class="cyan-accent-text" matTooltip="More info">help_outline</mat-icon>
+        </a>
+      </nav>
+
+      <div>
+        <div class="margin-left-5 padding-bottom-2 margin-top-2">
+          Here we have provided an example open-source dashboard Freeboard to
+          show how your data can be visualized. Freeboard provides simple and
+          easy to use dashboards for your devices.
+        </div>
+
+        <div class="freeboard-display padding-top-2">
+          <iframe
+            [src]="DashboardIFrameURL"
+            width="100%"
+            height="750px"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </lcu-dashboard-card-element>
+    <!--^^^ Dashboard ^^^-->
+
+    <!-- Device Reports -->
+    <!-- <div class="device-reports widget">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Device Reports</mat-card-title>
+                </mat-card-header>
+              </mat-card>
+            </div> -->
+
+
+  <!-- Loading -->
+  <div class="loading">
+    <lcu-loader [loading]="State?.Loading"></lcu-loader>
+
+    <div *ngIf="State?.Loading" class="margin-3">
+      <p *ngIf="!State.UserEnterpriseLookup">
+        Setting up your Dashboard, connecting you to the shared IoT flow, and
+        preparing your APIs.
+      </p>
+
+      <p *ngIf="State.UserEnterpriseLookup">Loading your Dashboard.</p>
+    </div>
+  </div>

@@ -8,7 +8,7 @@ import {
 import SwaggerUI from 'swagger-ui';
 
 @Component({
-  selector: 'swagger-ui',
+  selector: 'lcu-swagger-ui',
   templateUrl: './swagger-ui.component.html',
   styleUrls: ['./swagger-ui.component.scss'],
 })
@@ -17,7 +17,7 @@ export class SwaggerUIComponent implements AfterViewInit, OnInit {
 
   //  Properties
   @Input('auth-key')
-  public AuthKey?: string;
+  public AuthKey: string;
 
   @Input('id')
   public ID: string;
@@ -59,7 +59,7 @@ export class SwaggerUIComponent implements AfterViewInit, OnInit {
       };
     }
 
-    const swag = SwaggerUI(swaggerCfg);
+    const  swag = SwaggerUI(swaggerCfg);
     // const ui = SwaggerUIBundle({
     //   dom_id: '#swagger-ui',
     //   layout: 'BaseLayout',
