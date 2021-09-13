@@ -19,6 +19,8 @@ export class IoTEnsembleState {
 
   public Error?: ErrorContext;
 
+  public ExpandedPayloadID?: string;
+
   public HasAccess?: boolean;
 
   public Loading?: boolean;
@@ -105,13 +107,13 @@ export class IoTEnsembleTelemetry {
 
   public Loading?: boolean;
 
-  public Page!: number;
+  public Page?: number;
 
   public PageSize?: number;
 
   public Payloads?: IoTEnsembleTelemetryPayload[];
 
-  public RefreshRate!: number;
+  public RefreshRate?: number;
 
   public LastSyncedAt?: string;
 

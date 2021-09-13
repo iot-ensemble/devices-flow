@@ -59,7 +59,7 @@ export class SwaggerUIComponent implements AfterViewInit, OnInit {
       };
     }
 
-    const  swag = SwaggerUI(swaggerCfg);
+    const swag = SwaggerUI(swaggerCfg);
     // const ui = SwaggerUIBundle({
     //   dom_id: '#swagger-ui',
     //   layout: 'BaseLayout',

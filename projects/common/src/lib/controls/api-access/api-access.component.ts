@@ -17,13 +17,13 @@ import {
 import { of } from 'rxjs';
 
 export class APIAccessKeyData {
-  public Key: string;
+  public Key?: string;
 
-  public KeyName: string;
+  public KeyName?: string;
 }
 
 @Component({
-  selector: 'api-access',
+  selector: 'lcu-api-access',
   templateUrl: './api-access.component.html',
   styleUrls: ['./api-access.component.scss'],
 })
@@ -51,7 +51,12 @@ export class ApiAccessComponent implements OnChanges, OnInit {
 
   //  Constructors
   constructor() {
+    this.Description =
+      'Here we have embedded Swagger so that you can see the parameters available for various APIs, as well as test to see the responses.';
+
     this.Regenerated = new EventEmitter();
+
+    this.Title = 'Try It';
   }
 
   //  Life Cycle

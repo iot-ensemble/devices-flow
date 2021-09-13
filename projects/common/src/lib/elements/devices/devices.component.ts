@@ -6,26 +6,37 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { GenericModalModel } from '../../models/generice-modal.model';
+import { GenericModalService } from '../../services/generic-modal.service';
 import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
+import { SasTokenDialogComponent } from '../manage/controls/sas-token-dialog/sas-token-dialog.component';
+import { PayloadFormComponent } from '../../controls/payload-form/payload-form.component';
 
 @Component({
   selector: 'lcu-devices',
   templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.css'],
+  styleUrls: ['./devices.component.scss'],
 })
 export class DevicesComponent implements OnInit {
   //  Fields
+  
+  protected stateHandlerSub: Subscription;
+
+  protected devicesSasTokensOpened: boolean;
 
   //  Properties
-  public AddDeviceFormGroup!: FormGroup;
+  public AddDeviceFormGroup: FormGroup;
 
-  public DeviceNames!: string[];
+  public ConnectedDevicesInfoCardFlex: string;
+
+  public DeviceNames: string[];
 
   public get DeviceNameErrorText(): string {
-    let errorText: string = "";
+    let errorText: string = null;
 
-    if (this.AddDeviceFormGroup.get('deviceName').hasError('required') && this.AddDeviceFormGroup?.touched) {
+    if (this.AddDeviceFormGroup.get('deviceName').hasError('required') && this.AddDeviceFormGroup.touched) {
       errorText = 'Device name is required\r\n';
     }
 
@@ -64,6 +75,7 @@ export class DevicesComponent implements OnInit {
 
   //  Constructors
   constructor(
+    protected genericModalService: GenericModalService<PayloadFormComponent>,
     protected iotEnsCtxt: IoTEnsembleStateContext,
     protected formBldr: FormBuilder,
     ) {
@@ -73,10 +85,15 @@ export class DevicesComponent implements OnInit {
 
   //  Life Cycle
   public ngOnInit() {
+    this.setupStateHandler();
     this.setupAddDeviceForm();
   }
 
   //  API Methods
+  public get AddDeviceFGDeviceName(): AbstractControl{
+    return this.AddDeviceFormGroup.get('deviceName');
+  }
+
   public EnrollDeviceSubmit() {
     this.State!.DevicesConfig!.Loading = true;
 
@@ -101,9 +118,50 @@ export class DevicesComponent implements OnInit {
     this.State!.DevicesConfig!.Status! = null;
   }
 
+  public DeviceSASTokensModal(): void {
+    // debugger;
+    if (
+      !this.devicesSasTokensOpened &&
+      !!this.State?.DevicesConfig?.SASTokens
+    ) {
+      /**
+       * Acces component properties not working - shannon
+       *
+       * TODO: get this working
+       */
+      // const tt = el.nativeElement.DeviceName;
+      // payloadForm.DeviceName = 'blah;
+
+      const modalConfig: GenericModalModel = new GenericModalModel({
+        ModalType: 'data', // type of modal we want (data, confirm, info)
+        CallbackAction: (val: any) => {}, // function exposed to the modal
+        Component: SasTokenDialogComponent, // set component to be used inside the modal
+        Data: {
+          SASTokens: this.State?.DevicesConfig?.SASTokens,
+        },
+        LabelCancel: 'Close',
+        // LabelAction: 'OK',
+        Title: 'Device SAS Tokens',
+        Width: '50%',
+      });
+
+      this.genericModalService.Open(modalConfig);
+
+      this.genericModalService.ModalComponent.afterClosed().subscribe(
+        (res: any) => {
+          this.Refresh('Devices');
+
+          this.devicesSasTokensOpened = false;
+        }
+      );
+
+      this.devicesSasTokensOpened = true;
+    }
+  }
+
   public IssueDeviceSASToken(deviceName: string) {
 
-    this.State.DevicesConfig!.Loading = true;
+    this.State.DevicesConfig.Loading = true;
 
     //  TODO:  Pass through expiry time in some way?
     this.iotEnsCtxt.IssueDeviceSASToken(deviceName, 0);
@@ -123,6 +181,23 @@ export class DevicesComponent implements OnInit {
     this.iotEnsCtxt.RevokeDeviceEnrollment(deviceId);
   }
 
+  public Refresh(ctxt: string) {
+
+    const loadingCtxt = this.State[ctxt] || this.State;
+
+    loadingCtxt.Loading = true;
+
+    this.iotEnsCtxt.$Refresh();
+
+    /**
+     * as per a discussion with Mike,
+     * placing this here to circumvent, bug 9297, for now - shannon
+     *
+     */
+    loadingCtxt.Loading = false;
+    //
+  }
+  
   //Helpers
 
     /**
@@ -130,8 +205,8 @@ export class DevicesComponent implements OnInit {
    */
 
   protected deviceNameValidator(): ValidatorFn {
-      return (control: AbstractControl): { [key: string]: any } | null =>
-        this.DeviceNames?.includes(control.value)
+    return (control: AbstractControl): { [key: string]: any } | null =>
+      !this.DeviceNames.includes(control.value)
           ? null
           : { duplicateName: control.value };
     }
@@ -157,14 +232,46 @@ export class DevicesComponent implements OnInit {
           Validators.required,
           Validators.maxLength(90),
           Validators.pattern(regex),
-          this.deviceNameValidator(),
+          this.deviceNameValidator()
         ]),
       ],
     });
   }
 
+  protected setupStateHandler() {
+    this.stateHandlerSub = this.iotEnsCtxt.Context.subscribe((state) => {
+      this.State = Object.assign(this.State, state);
 
-  
+      // console.log("State: ", this.State)
+      this.handleStateChanged();
+    });
+  }
+
+  protected handleStateChanged() {
+    this.DeviceSASTokensModal();
+
+    this.DeviceNames =
+      this.State?.DevicesConfig?.Devices?.map((d) => d.DeviceName) || [];
+    if (this.State?.Telemetry) {
+      if(this.EnrollOpen === undefined)
+        this.EnrollOpen = this.isEnrollOpen();
+    }
+
+    this.setConnectedDevicesInfoCardFlex();
+  }
+
+  protected isEnrollOpen() {
+    if(this.State.DevicesConfig.TotalDevices > 0)
+      return false
+    return true;
+  }
+
+  protected setConnectedDevicesInfoCardFlex() {
+    const maxDeviceFlex = this.MaxDevicesReached ? '100%' : '50%';
+
+    this.ConnectedDevicesInfoCardFlex = this.EnrollOpen ? maxDeviceFlex : '100%';
+  }
+
   public UpdateDeviceTablePageSize(pageSize: number) {
     this.State!.DevicesConfig!.Loading = true;
 

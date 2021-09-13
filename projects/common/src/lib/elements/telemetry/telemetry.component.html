@@ -34,6 +34,7 @@
             class="cursor-pointer"
             color="primary"
             matTooltip="Download Telemetry Data"
+            (click)="DownloadTelemetryModal()"
           >
             download
           </mat-icon>
@@ -59,10 +60,12 @@
         </a>
       </nav>
 
-      <div [class.margin-left-5]="State.Telemetry!.Payloads!.length <= 0">
+      <div [class.margin-left-5]="State.Telemetry.Payloads.length <= 0">
         <telemetry-list
-          [telemetry]="State.Telemetry!"
-          (page-event)="HandleTelemetryPageEvent($event)"
+        [telemetry]="State.Telemetry"
+        [active]="State.ExpandedPayloadID"
+        (page-event)="HandleTelemetryPageEvent($event)"
+        (payloadId)="HandleExpandedPayloadID($event)"
         >
         </telemetry-list>
       </div>

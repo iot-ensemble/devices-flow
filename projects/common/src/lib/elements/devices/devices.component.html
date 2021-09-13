@@ -1,7 +1,6 @@
 <lcu-dashboard-card-element
 class="connected section"
 [context]="{ Title: 'Connected Devices', Icon: 'loop' }"
-*ngIf="State.DevicesConfig"
 >
 <span class="card-subtitle" *ngIf="MaxDevicesReached && EnrollOpen">
   Max number of devices reached
@@ -30,7 +29,7 @@ class="connected section"
     class="margin-x-1"
     style="width: 100%"
     [class.margin-left-5]="
-    EnrollOpen || State.DevicesConfig!.Devices!.length <= 0
+    EnrollOpen || State.DevicesConfig?.Devices?.length <= 0
     "
   >
     <div *ngIf="EnrollOpen">
@@ -85,14 +84,14 @@ class="connected section"
     <div
       class="divider-fill-vert margin-x-5"
       fxShow
-      
+      [fxHide.lt-md]="true"
     ></div>
-    <!-- [fxHide.lt-md]="true" -->
+
     <div
       class="divider-fill-hor margin-y-5"
       fxHide
+      [fxShow.lt-md]="true"
     ></div>
-    <!-- [fxShow.lt-md]="true" -->
 
     <div class="margin-x-1" fxFlex="50%" fxFlex.lt-md="100%">
       <lcu-loader
@@ -172,12 +171,12 @@ class="connected section"
       !State.DevicesConfig?.Loading && EnrollOpen && !MaxDevicesReached
     "
   >
-    <button
+      <button
       mat-raised-button
       type="submit"
       color="primary"
       (click)="EnrollDeviceSubmit()"
-      [disabled]="!AddDeviceFormGroup?.valid || DeviceNameErrorText"
+      [disabled]="!AddDeviceFormGroup.valid || DeviceNameErrorText"
     >
       Enroll Device
     </button>

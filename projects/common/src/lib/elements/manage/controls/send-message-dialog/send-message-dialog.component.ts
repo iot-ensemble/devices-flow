@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IoTEnsembleTelemetryPayload } from '../../../state/iot-ensemble.state';
-import { GenericModalModel } from '../../../models/generice-modal.model';
+import { IoTEnsembleTelemetryPayload } from '../../../../state/iot-ensemble.state';
+import { GenericModalModel } from '../../../../models/generice-modal.model';
 //import { filter } from 'jszip';
 
 @Component({

@@ -18,4 +18,31 @@
   </div>
 
   <div class="divider-fill-hor margin-top-4"></div>
+
+  <div class="margin-top-4">
+    <div>
+      <mat-card-header>
+        <mat-card-title>
+          {{ Title }}
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="margin-left-5">
+        <p>
+          {{ Description }}
+        </p>
+
+        <div class="margin-top-4">
+          <lcu-swagger-ui
+            [source]="OpenAPISource"
+            [auth-key]="APIKeys[0]?.Key"
+            *ngIf="APIKeys?.length > 0"
+          >
+          </lcu-swagger-ui>
+        </div>
+      </mat-card-content>
+    </div>
+
+    <div class="divider-fill-hor margin-top-4"></div>
+  </div>
 </div>
