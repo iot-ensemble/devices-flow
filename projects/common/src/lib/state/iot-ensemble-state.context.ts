@@ -261,6 +261,26 @@ export class IoTEnsembleStateContext extends StateContext<IoTEnsembleState> {
     return { Loading: true } as IoTEnsembleState;
   }
 
+  protected loadActionUrl(urlRoot: string) {
+    const apiRoot = '';
+
+    const actionPath = this.loadActionPath();
+
+    return `${apiRoot}${urlRoot || ''}${actionPath}`;
+  }
+
+  protected loadStateActionRoot() {
+    const stateActinRoot = '/api/state';
+
+    return `${stateActinRoot}/${this.loadStateName()}`;
+  }
+
+  protected loadStateRoot() {
+    const stateRoot = '/api/state';
+
+    return `${stateRoot}/${this.loadStateName()}`;
+  }
+
   protected loadStateKey(): string {
     return 'shared';
   }
