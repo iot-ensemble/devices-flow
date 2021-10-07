@@ -14,8 +14,9 @@ import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 import { SasTokenDialogComponent } from '../manage/controls/sas-token-dialog/sas-token-dialog.component';
 import { PayloadFormComponent } from '../../controls/payload-form/payload-form.component';
 
+export const SELECTOR_LCU_DEVICE_DATA_FLOW_DEVICES_ELEMENT = 'lcu-devices';
 @Component({
-  selector: 'lcu-devices',
+  selector: SELECTOR_LCU_DEVICE_DATA_FLOW_DEVICES_ELEMENT,
   templateUrl: './devices.component.html',
   styleUrls: ['./devices.component.scss'],
 })

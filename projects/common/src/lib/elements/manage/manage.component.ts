@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 
-
+export const SELECTOR_LCU_DEVICE_DATA_FLOW_MANAGE_ELEMENT = 'lcu-manage';
 @Component({
-  selector: 'lcu-manage',
+  selector: 'SELECTOR_LCU_DEVICE_DATA_FLOW_MANAGE_ELEMENT',
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
 })

@@ -7,7 +7,8 @@ import {
   PipeModule,
 } from '@lcu/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AnimationService } from './services/animation.service'
+import { AnimationService } from './services/animation.service';
+import { LcuDeviceDataFlowSetupElementComponent } from './elements/setup/setup.component';
 import { DataGridModule } from '@lowcodeunit/data-grid';
 import { DevicesComponent } from './elements/devices/devices.component';
 import { EmulatedDevicesComponent } from './elements/emulated-devices/emulated-devices.component';
@@ -53,7 +54,8 @@ import { LoaderComponent } from './controls/loader/loader.component';
     PayloadFormComponent,
     SasTokenDialogComponent,
     SendMessageDialogComponent,
-    SwaggerUIComponent
+    SwaggerUIComponent,
+    LcuDeviceDataFlowSetupElementComponent
   ],
   imports: [  
     FathymSharedModule,
@@ -85,13 +87,15 @@ import { LoaderComponent } from './controls/loader/loader.component';
     PayloadComponent,
     SasTokenDialogComponent,
     SendMessageDialogComponent,
-    SwaggerUIComponent
+    SwaggerUIComponent,
+    LcuDeviceDataFlowSetupElementComponent
   ],
   providers: [
   ],
   entryComponents: [
     PayloadComponent,
     PayloadFormComponent,
+    LcuDeviceDataFlowSetupElementComponent
   ]
 })
 export class CommonModule {
