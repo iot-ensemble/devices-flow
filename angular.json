@@ -147,17 +147,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/lcu/src/favicon.ico",
-              "projects/lcu/src/assets",
-              {
-                "glob": "package.json",
-                "input": "./projects/lcu/",
-                "output": "/"
-              },
-              {
-                "glob": "lcu.json",
-                "input": "./",
-                "output": "/"
-              }
+              "projects/lcu/src/assets"
             ],
             "styles": ["projects/lcu/src/styles.scss"],
             "scripts": [
@@ -243,5 +233,5 @@
       }
     }
   },
-  "defaultProject": "lcu"
+  "defaultProject": "demo"
 }
