@@ -1,1 +1,190 @@
-<p>devices works!</p>
+<lcu-dashboard-card-element
+class="connected section"
+[context]="{ Title: 'Connected Devices', Icon: 'loop' }"
+>
+<span class="card-subtitle" *ngIf="MaxDevicesReached && EnrollOpen">
+  Max number of devices reached
+</span>
+
+<nav>
+  <lcu-loader
+    [loading]="State.DevicesConfig?.Loading && !EnrollOpen"
+    [diameter]="50"
+  >
+  </lcu-loader>
+
+  <a
+    href="https://www.iot-ensemble.com/docs/getting-started/connecting-first-device"
+    target="_blank"
+    lcuEvent="click"
+    label="Connected Devices"
+    category="help"
+  >
+    <mat-icon class="cyan-accent-text" matTooltip="More info">help_outline</mat-icon>
+  </a>
+</nav>
+
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+  <div
+    class="margin-x-1"
+    style="width: 100%"
+    [class.margin-left-5]="
+    EnrollOpen || State.DevicesConfig?.Devices?.length <= 0
+    "
+  >
+    <div *ngIf="EnrollOpen">
+      <ng-container *ngIf="!MaxDevicesReached">
+        <p class="paragraph-text">
+          To connect a device and see its real-time data flowing through
+          the system, simply enter a device name and enroll it. You will
+          be provided with a connection string for your device.
+        </p>
+      </ng-container>
+
+      <ng-container *ngIf="MaxDevicesReached">
+        <p
+          *ngIf="State.DevicesConfig.MaxDevicesCount < 50"
+          class="paragraph-text"
+        >
+          Click "Upgrade Now" to see other plans where you can connect
+          more than
+          {{ State.DevicesConfig.MaxDevicesCount }}
+          {{
+            State.DevicesConfig.MaxDevicesCount > 1
+              ? "devices"
+              : "device"
+          }}, increase your data velocity, increase your data retention
+          and other great benefits.
+        </p>
+        <p
+          *ngIf="State.DevicesConfig.MaxDevicesCount === 50"
+          class="paragraph-text"
+        >
+          Please contact Fathym at
+          <a href="mailto: sales@fathym.com" color="primary" mat-button>
+            sales@fathym.com</a
+          >
+          for enterprise packages.
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="device-list" *ngIf="!EnrollOpen">
+      <devices-table
+        [devices-config]="State.DevicesConfig"
+        (issued-sas-token)="IssueDeviceSASToken($event)"
+        (page-event)="DeviceTablePageEvent($event)"
+        (revoked)="RevokeDeviceEnrollmentClick($event)"
+      >
+      </devices-table>
+    </div>
+  </div>
+
+  <ng-container *ngIf="EnrollOpen && !MaxDevicesReached">
+    <div
+      class="divider-fill-vert margin-x-5"
+      fxShow
+      [fxHide.lt-md]="true"
+    ></div>
+
+    <div
+      class="divider-fill-hor margin-y-5"
+      fxHide
+      [fxShow.lt-md]="true"
+    ></div>
+
+    <div class="margin-x-1" fxFlex="50%" fxFlex.lt-md="100%">
+      <lcu-loader
+        [loading]="State.DevicesConfig?.Loading"
+        [diameter]="100"
+      >
+      </lcu-loader>
+
+      <form
+        [formGroup]="AddDeviceFormGroup"
+        *ngIf="!State.DevicesConfig?.Loading"
+      >
+        <div>
+          <div class="device-adding">
+            <h2>Enroll a New Device</h2>
+
+            <mat-form-field>
+              <input
+                matInput
+                formControlName="deviceName"
+                placeholder="The Name of your Device"
+                required
+              />
+            </mat-form-field>
+          </div>
+
+          <mat-error *ngIf="DeviceNameErrorText">
+            {{ DeviceNameErrorText }}
+          </mat-error>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+</div>
+
+<span class="card-actions">
+  <div fxFlex></div>
+
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="EnrollNewDevice()"
+    *ngIf="!EnrollOpen"
+  >
+    Enroll New Device
+  </button>
+
+  <ng-container *ngIf="EnrollOpen && MaxDevicesReached">
+    <a
+      mat-button
+      href="https://www.iot-ensemble.com/docs/getting-started/buy-and-scale"
+      target="_blank"
+      *ngIf="EnrollOpen"
+      color="accent"
+    >
+      Read Documentation
+    </a>
+
+    <a
+      *ngIf="State.DevicesConfig.MaxDevicesCount < 50"
+      mat-raised-button
+      href="/billing/iot"
+      color="accent"
+      target="_blank"
+    >
+      Upgrade now
+    </a>
+
+    <a mat-button color="warn" (click)="ToggleAddingDevice()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </a>
+  </ng-container>
+
+  <ng-container
+    *ngIf="
+      !State.DevicesConfig?.Loading && EnrollOpen && !MaxDevicesReached
+    "
+  >
+      <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="EnrollDeviceSubmit()"
+      [disabled]="!AddDeviceFormGroup.valid || DeviceNameErrorText"
+    >
+      Enroll Device
+    </button>
+
+    <a mat-button color="warn" (click)="CancelAddingDevice()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </a>
+  </ng-container>
+</span>
+</lcu-dashboard-card-element>

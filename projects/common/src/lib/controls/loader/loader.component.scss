@@ -1,7 +1,9 @@
+@import "../../../../../common/src/assets/common";
+
 :host ::ngdeep {
   .spinner-logo {
     position: absolute;
-    // background-image: fathym-logo(thinky-logo, black, 1);
+    background-image: fathym-logo(thinky-logo, black, 1);
     background-repeat: no-repeat;
   }
 }

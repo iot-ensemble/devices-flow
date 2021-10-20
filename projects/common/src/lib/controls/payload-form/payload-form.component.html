@@ -1,0 +1,79 @@
+<form [formGroup]="PayloadFormGroup" (ngSubmit)="Send()">
+  <mat-form-field class="mat-full-width">
+    <input
+      matInput
+      formControlName="deviceName"
+      placeholder="The Name of your Device"
+      required
+      [matAutocomplete]="auto"
+    >
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let deviceOption of DeviceOptions" [value]="deviceOption">
+        {{ deviceOption }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <input
+      matInput
+      formControlName="version"
+      placeholder="The Device Version"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <input
+      matInput
+      formControlName="deviceType"
+      placeholder="The Device Type"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <textarea
+      matInput
+      formControlName="deviceData"
+      placeholder="The Device Data (JSON Object '{...}')"
+      required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <textarea
+      matInput
+      formControlName="sensorReadings"
+      placeholder="The Sensor Readings (JSON Object '{...}')"
+      required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="mat-full-width">
+    <textarea
+      matInput
+      formControlName="sensorMetadata"
+      placeholder="The Sensor Metadata (JSON Object '{...}')"
+      required></textarea>
+  </mat-form-field>
+
+  <div 
+    fxLayout="row" 
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="end end"
+    fxLayoutAlign="end center">
+    <button
+      class="margin-right-2"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="!PayloadFormGroup.valid"
+    >
+      Send Message
+    </button>
+
+    <a mat-button color="warn" (click)="Cancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </a>
+  </div>
+</form>

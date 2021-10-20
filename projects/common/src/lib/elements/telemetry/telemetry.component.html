@@ -1,1 +1,85 @@
-<p>telemetry works!</p>
+<lcu-dashboard-card-element
+      class="telemetry section"
+      [context]="{ Title: 'Devices Telemetry', Icon: 'compare_arrows' }"
+    >
+      <span class="card-subtitle">
+        <div matTooltip="Updates successful" class="margin-right-1">
+          <mat-icon
+            [class.success-dot]="State.Telemetry?.Enabled"
+            [class.error-dot]="!State.Telemetry?.Enabled"
+          >
+            stop_circle
+          </mat-icon>
+        </div>
+
+        Last Updated: {{ LastSyncedAt }}
+      </span>
+
+      <nav>
+        <div>
+          <mat-icon
+            class="cursor-pointer"
+            color="primary"
+            matTooltip="Refresh Telemetry Data"
+            (click)="UpdateTelemetryPage(1)"
+          >
+            refresh
+          </mat-icon>
+        </div>
+
+        <div>
+            <!-- TODO: download with new api call -->
+          <mat-icon
+            id="telemetry-download-element"
+            class="cursor-pointer"
+            color="primary"
+            matTooltip="Download Telemetry Data"
+            (click)="DownloadTelemetryModal()"
+          >
+            download
+          </mat-icon>
+        </div>
+
+        <lcu-enabled-toggle
+          class="margin-right-3"
+          [enabled]="State.Telemetry?.Enabled"
+          enabled-text="Live"
+          [loading]="State.Telemetry?.Loading"
+          (enabled-toggled)="ToggleTelemetryEnabledChanged($event)"
+        >
+        </lcu-enabled-toggle>
+
+        <a
+          href="https://www.iot-ensemble.com/docs/getting-started/viewing-device-data#devices-telemetry"
+          target="_blank"
+          lcuEvent="click"
+          label="Device Telemetry"
+          category="help"
+        >
+          <mat-icon class="cyan-accent-text" matTooltip="More info">help_outline</mat-icon>
+        </a>
+      </nav>
+
+      <div [class.margin-left-5]="State.Telemetry.Payloads.length <= 0">
+        <telemetry-list
+        [telemetry]="State.Telemetry"
+        [active]="State.ExpandedPayloadID"
+        (page-event)="HandleTelemetryPageEvent($event)"
+        (payloadId)="HandleExpandedPayloadID($event)"
+        >
+        </telemetry-list>
+      </div>
+
+      <span class="card-actions">
+        <div fxFlex></div>
+
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="PayloadFormModal()"
+          *ngIf="State.DevicesConfig?.Devices?.length >= 1"
+        >
+          Send Device Message
+        </button>
+      </span>
+    </lcu-dashboard-card-element>

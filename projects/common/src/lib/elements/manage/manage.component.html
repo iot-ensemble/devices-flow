@@ -1,0 +1,21 @@
+<ng-container  *ngIf="!State.Loading">
+  <lcu-emulated-devices  [state]="State"></lcu-emulated-devices>
+  <lcu-devices [state]="State"></lcu-devices>
+  <lcu-telemetry [state]="State"></lcu-telemetry>
+  <lcu-storage-access [state]="State"></lcu-storage-access>
+  <lcu-dashboard [state]="State"></lcu-dashboard>
+</ng-container>
+
+<!-- Loading -->
+<div class="loading">
+  <lcu-loader [loading]="State?.Loading"></lcu-loader>
+
+  <div *ngIf="State?.Loading" class="margin-3">
+    <p *ngIf="!State.UserEnterpriseLookup">
+      Setting up your Dashboard, connecting you to the shared IoT flow, and
+      preparing your APIs.
+    </p>
+
+    <p *ngIf="State.UserEnterpriseLookup">Loading your Dashboard.</p>
+  </div>
+</div>

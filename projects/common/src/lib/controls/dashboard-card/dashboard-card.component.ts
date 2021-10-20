@@ -11,6 +11,8 @@ export class DashboardCardComponent implements OnInit {
   //  Fields
 
   //  Properties
+  @Input('context')
+  public Context?: { Title: string; Icon: string; };
   @Input('icon')
   public Icon?: string;
 
