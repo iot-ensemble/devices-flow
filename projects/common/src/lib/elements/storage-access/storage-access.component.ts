@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 
 @Component({
   selector: 'lcu-storage-access',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StorageAccessComponent implements OnInit {
 
+  @Input('state')
+  public State!: IoTEnsembleState;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public RegenerateAPIKey(keyName: string) {
+    // this.State.Loading = true;
+
+    alert('Implement regenerate: ' + keyName);
+    // this.iotEnsCtxt.RegenerateAPIKey(keyName);
   }
 
 }

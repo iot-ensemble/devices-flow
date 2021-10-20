@@ -54,7 +54,10 @@
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
-            "styles": ["projects/demo/src/styles.scss"],
+            "styles": [
+              "node_modules/swagger-ui/dist/swagger-ui.css",
+              "node_modules/swagger-ui-themes/themes/3.x/theme-material.css",
+              "projects/demo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -114,7 +117,10 @@
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
             ],
-            "styles": ["projects/demo/src/styles.scss"],
+            "styles": [
+              "node_modules/swagger-ui/dist/swagger-ui.css",
+              "node_modules/swagger-ui-themes/themes/3.x/theme-material.css",
+              "projects/demo/src/styles.scss"],
             "scripts": []
           }
         }
@@ -141,7 +147,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/lcu/src/favicon.ico",
-              "projects/lcu/src/assets"
+              "projects/lcu/src/assets",
+              {
+                "glob": "package.json",
+                "input": "./projects/lcu/",
+                "output": "/"
+              },
+              {
+                "glob": "lcu.json",
+                "input": "./",
+                "output": "/"
+              }
             ],
             "styles": ["projects/lcu/src/styles.scss"],
             "scripts": [

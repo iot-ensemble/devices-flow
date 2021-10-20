@@ -2,13 +2,17 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "baseUrl": "./",
     "paths": {
       "@iot-ensemble/devices-flow-common": [
         "dist/common/common",
         "dist/common"
-      ]
+      ],
+      
     },
+    "emitDecoratorMetadata": false,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -32,6 +36,8 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictPropertyInitialization": false,
+    "strictTemplates": true,
+    "emitDecoratorMetadata": false
   }
 }
