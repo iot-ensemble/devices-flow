@@ -10,13 +10,13 @@
 		],
 		"solutions": {
 			"manage": {
-				"element": "lcu-device-data-flow-manage-element"
+				"element": "lcu-manage"
 			},
 			"admin": {
-				"element": "lcu-device-data-flow-admin-element"
+				"element": "lcu-admin-element"
 			},
 			"devices": {
-				"element": "lcu-device-data-flow-devices-element"
+				"element": "lcu-devices"
 			},
 			"setup": {
 				"element": "lcu-device-data-flow-setup-element"
