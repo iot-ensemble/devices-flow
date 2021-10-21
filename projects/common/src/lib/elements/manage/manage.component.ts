@@ -4,7 +4,7 @@ import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context'
 
 export const SELECTOR_LCU_DEVICE_DATA_FLOW_MANAGE_ELEMENT = 'lcu-manage';
 @Component({
-  selector: 'SELECTOR_LCU_DEVICE_DATA_FLOW_MANAGE_ELEMENT',
+  selector: SELECTOR_LCU_DEVICE_DATA_FLOW_MANAGE_ELEMENT,
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.scss'],
 })
