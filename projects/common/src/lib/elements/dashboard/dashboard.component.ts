@@ -5,8 +5,10 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { IoTEnsembleStateContext } from '../../state/iot-ensemble-state.context';
 import { IoTEnsembleState } from '../../state/iot-ensemble.state';
 
+export const SELECTOR_LCU_DEVICE_DATA_FLOW_DASHBOARD_ELEMENT = 'lcu-dashboard';
+
 @Component({
-  selector: 'lcu-dashboard',
+  selector: SELECTOR_LCU_DEVICE_DATA_FLOW_DASHBOARD_ELEMENT,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

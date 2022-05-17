@@ -9,8 +9,10 @@ import { ColdQueryModel } from '../../models/cold-query.model';
 import { TelemetryDownloadDialogComponent } from '../manage/controls/telemetry-download-dialog/telemetry-download-dialog.component';
 import { Subscription } from 'rxjs';
 
+export const SELECTOR_LCU_DEVICE_DATA_FLOW_TELEMETRY_ELEMENT = 'lcu-telemetry';
+
 @Component({
-  selector: 'lcu-telemetry',
+  selector: SELECTOR_LCU_DEVICE_DATA_FLOW_TELEMETRY_ELEMENT,
   templateUrl: './telemetry.component.html',
   styleUrls: ['./telemetry.component.css']
 })

@@ -13,6 +13,18 @@ import {
   SELECTOR_LCU_DEVICE_DATA_FLOW_DEVICES_ELEMENT,
   LcuDeviceDataFlowSetupElementComponent,
   SELECTOR_LCU_DEVICE_DATA_FLOW_SETUP_ELEMENT,
+  DashboardComponent,
+  SELECTOR_LCU_DEVICE_DATA_FLOW_DASHBOARD_ELEMENT,
+  TelemetryComponent,
+  SELECTOR_LCU_DEVICE_DATA_FLOW_TELEMETRY_ELEMENT,
+  StorageAccessComponent,
+  SELECTOR_LCU_DEVICE_DATA_FLOW_STORAGE_ELEMENT,
+  PayloadComponent,
+  SELECTOR_LCU_DEVICE_DATA_FLOW_PAYLOAD_ELEMENT,
+  EmulatedDevicesComponent,
+  SELECTOR_LCU_DEVICE_DATA_FLOW_EMULATED_ELEMENT,
+
+
 } from '@iot-ensemble/devices-flow-common';
 import { createCustomElement } from '@angular/elements';
 
@@ -67,5 +79,37 @@ export class AppModule implements DoBootstrap {
     });
 
     customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_SETUP_ELEMENT, setup);
+
+    //need dashboard, emulated-devices, payload, storage-acess, telemetry
+
+    const dashboard = createCustomElement(DashboardComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_DASHBOARD_ELEMENT, dashboard);
+
+    const emulatedDevices = createCustomElement(EmulatedDevicesComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_EMULATED_ELEMENT, emulatedDevices);
+
+    const payload = createCustomElement(PayloadComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_PAYLOAD_ELEMENT, payload);
+
+    const storageAccess = createCustomElement(StorageAccessComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_STORAGE_ELEMENT, storageAccess);
+
+    const telemetry = createCustomElement(TelemetryComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define(SELECTOR_LCU_DEVICE_DATA_FLOW_TELEMETRY_ELEMENT, telemetry);
   }
 }

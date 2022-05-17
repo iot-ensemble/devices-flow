@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IoTEnsembleTelemetryPayload } from '../../state/iot-ensemble.state';
 
+export const SELECTOR_LCU_DEVICE_DATA_FLOW_PAYLOAD_ELEMENT = 'lcu-payload';
 
 @Component({
-  selector: 'lcu-payload',
+  selector: SELECTOR_LCU_DEVICE_DATA_FLOW_PAYLOAD_ELEMENT,
   templateUrl: './payload.component.html',
   styleUrls: ['./payload.component.scss']
 })
