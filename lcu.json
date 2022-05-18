@@ -18,6 +18,21 @@
 			"devices": {
 				"element": "lcu-devices"
 			},
+			"dashboard": {
+				"element":"lcu-dashboard"
+			},
+			"emulated-devices": {
+				"element":"lcu-emulated-devices"
+			},
+			"payload": {
+				"element":"lcu-payload"
+			},
+			"storage-access": {
+				"element":"lcu-storage-access"
+			},
+			"telemetry": {
+				"element":"lcu-telemetry"
+			},
 			"setup": {
 				"element": "lcu-device-data-flow-setup-element"
 			}
